@@ -7,4 +7,5 @@ Questions?  Email: natalie@auburnandivory.com.
 
 
 * freespace.pl -- Easy parser for df -h.  Usage:
-   perl freespace.pl --filesys="/dev/sda1" --option="Size" > output
+   
+      perl freespace.pl --filesys="/dev/sda1" --option="Size" > output
