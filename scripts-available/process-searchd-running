@@ -1,0 +1,3 @@
+#!/bin/bash
+VARR=`ps aux |grep searchd |wc -l`
+echo $(($VARR-2))

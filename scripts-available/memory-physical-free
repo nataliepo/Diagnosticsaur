@@ -1,0 +1,2 @@
+#!/bin/bash
+free -m | awk '/Mem/ {print $4}'

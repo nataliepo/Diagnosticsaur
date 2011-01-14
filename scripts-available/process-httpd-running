@@ -1,0 +1,3 @@
+#!/bin/bash
+VARR=`ps aux |grep httpd |wc -l`
+echo $(($VARR-2))
