@@ -41,4 +41,17 @@ Use the debug statement to get a snapshot of all values, and to see supported ty
       perl top-scrubber.pl --debug
       
       
+* process_report.pl -- counts and averages on open processes.
+
+Usage:
+
+      # Reports the average cpu usage from any open processes with httpd in its command 
+      perl process_report.pl --process="httpd" --metric="cpu" --summary="avg"
       
+      # Counts how many CGI processes are open
+      perl process_report.pl --process="cgi" --metric="count"
+      
+      # Reports max cpu usage of all the open foo.cgi processes
+      perl process_report.pl --process="foo.cgi" --metric="cpu" --summary="max"
+      
+You can report summary= avg, max, min across metrics=cpu, mem, time (where time is the number of seconds the process has been running).
