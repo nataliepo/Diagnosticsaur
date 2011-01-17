@@ -60,7 +60,7 @@ foreach ( keys %setid ) {
 }
 
 # TODO: don't hard code this location
-my $write_file = '/Users/djacobs/Desktop/protovis/scratch/stats2.js';
+my $write_file = '/Users/djacobs/Dropbox/Projects/Diagnosticsaur/scratch/stats2.js';
 
 open my ($fh), '>', $write_file or die 'could not open stats file for writing';
 print $fh 'var stats = ' . encode_json( \@datavar ) . ';';
