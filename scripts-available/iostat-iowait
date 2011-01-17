@@ -1,0 +1,1 @@
+iostat -n | awk '/avg-cpu/{getline;print $4}'
