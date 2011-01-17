@@ -51,7 +51,9 @@ foreach ( keys %setid ) {
         # debug(Dumper($ii));
         # my $hour = (localtime($ii->{'time'}))[2], "\n";
         $datakey{$setid}{'name'} = $setid;
-        $datakey{$setid}{'hour'} = ( localtime( $ii->{'time'} ) )[2];
+        $datakey{$setid}{'hour'} =
+          ( localtime( $ii->{'time'} ) )[2] +
+          ( ( ( localtime( $ii->{'time'} ) )[1] ) / 60 );
         $datakey{$setid}{ $ii->{'operation'} } = $ii->{'value'};
     }
 
@@ -60,7 +62,8 @@ foreach ( keys %setid ) {
 }
 
 # TODO: don't hard code this location
-my $write_file = '/Users/djacobs/Dropbox/Projects/Diagnosticsaur/scratch/stats2.js';
+my $write_file =
+  '/Users/djacobs/Dropbox/Projects/Diagnosticsaur/scratch/stats2.js';
 
 open my ($fh), '>', $write_file or die 'could not open stats file for writing';
 print $fh 'var stats = ' . encode_json( \@datavar ) . ';';
