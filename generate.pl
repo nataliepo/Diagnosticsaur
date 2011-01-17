@@ -48,9 +48,9 @@ foreach ( keys %setid ) {
     $setid = $_;
     while ( $ii = $data->next ) {
 
-        # debug(Dumper($ii));
-        # my $hour = (localtime($ii->{'time'}))[2], "\n";
-        $datakey{$setid}{'name'} = $setid;
+# TODO we only have to do these next 3 things once, it's the op/value thing that we have to loop over.
+        $datakey{$setid}{'name'}      = $setid;
+        $datakey{$setid}{'server_id'} = $ii->{'server_id'};
         $datakey{$setid}{'hour'} =
           ( localtime( $ii->{'time'} ) )[2] +
           ( ( ( localtime( $ii->{'time'} ) )[1] ) / 60 );
@@ -62,6 +62,7 @@ foreach ( keys %setid ) {
 }
 
 # TODO: don't hard code this location
+# HC
 my $write_file =
   '/Users/djacobs/Dropbox/Projects/Diagnosticsaur/scratch/stats2.js';
 

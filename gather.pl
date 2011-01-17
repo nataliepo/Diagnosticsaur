@@ -3,12 +3,9 @@
 use strict;
 
 use constant SERVER     => 'AIdev';
+use constant SERVER_ID  => '1';
 use constant DEBUG      => 0;
 use constant DEBUG_SAVE => 0;
-
-# scripts-enabled location
-#use constant SDIR => '/home/djacobs/diagnosticsaur/run';
-#use constant SDIR => '/home/djacobs/diagnosticsaur/tools/*';
 
 use constant USER => 'xxxx';
 use constant PASS => 'xxxx';
@@ -28,6 +25,7 @@ debug($setid);
 
 #my @scripts = <SDIR>;
 # TODO - script locations should not be hardcoded
+# HC
 my @scripts = </home/djacobs/diagnosticsaur/run/*>;
 
 # TODO - decide on a consistent naming convention for databases
@@ -65,7 +63,8 @@ foreach $key (@scripts) {
             'time'      => $now,
             'server'    => SERVER,
             'fullpath'  => $key,
-            'setid'     => $setid
+            'setid'     => $setid,
+            'server_id' => SERVER_ID,
         }
     );
     debug( "id, ", $id );
