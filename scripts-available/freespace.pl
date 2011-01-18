@@ -37,7 +37,7 @@ my $freespace = `df -h "$filesys"`;
 
       my $line = $lines[$i];
 
-      if ($line =~ m|^(.*)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s+([\d]+%)\s+([^\s]+)$|) {
+      if ($line =~ m|^(.*)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s+([\d]+)%\s+([^\s]+)$|) {
    
          my @values = ($1, $2, $3, $4, $5, $6);
          my $breakdown = ();
