@@ -23,7 +23,7 @@ my $result = GetOptions(
    "config=s" => \$config_file,
 );
 
-my $config = DiagnosticsaurUtil->parse_config_file($result);
+my $config = DiagnosticsaurUtil->parse_config_file($config_file);
 
 # globals or reused
 my ( $key, $value );
