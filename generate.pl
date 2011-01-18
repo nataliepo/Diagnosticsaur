@@ -14,12 +14,20 @@ use constant PASS => 'xxxx';
 #use File::Glob qw(:globally :nocase);
 use JSON;
 use MongoDB;
+use Getopt::Long;
+
 
 
 use lib qw( lib );
 use DiagnosticsaurUtil;
+my $config_file;
 
-my $config = DiagnosticsaurUtil->parse_config_file();
+my $result = GetOptions(
+   "config=s" => \$config_file,
+);
+
+my $config = DiagnosticsaurUtil->parse_config_file($result);
+
 
 # globals or reused variables
 my ( %setid,      $setid );
