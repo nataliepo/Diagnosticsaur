@@ -1,0 +1,12 @@
+{
+   "Server":"ServerName",
+   "Server_ID":"100",
+   "Scripts_Directory":"full/or/relative/path/to/scripts/",
+   "Database_Name":"DatabaseName",
+   "Database_User":"User",
+   "Database_Password":"Password",
+   "Database_Host":"Host",
+   "Database_Port":Port,
+   "Output_Path":"full/or/relative/path/to/output_file.js",
+   "Collection":"CollectionName"
+}

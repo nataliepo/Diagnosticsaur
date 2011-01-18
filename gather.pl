@@ -2,13 +2,8 @@
 
 use strict;
 
-use constant SERVER     => 'AIdev';
-use constant SERVER_ID  => '1';
 use constant DEBUG      => 0;
 use constant DEBUG_SAVE => 0;
-
-use constant USER => 'xxxx';
-use constant PASS => 'xxxx';
 
 # libraries
 use Data::Dumper;
@@ -16,28 +11,44 @@ use File::Glob qw(:globally :nocase);
 use JSON;
 use MongoDB;
 
+use lib qw( lib );
+use DiagnosticsaurUtil;
+
+my $config = DiagnosticsaurUtil->parse_config_file();
+
 # globals or reused
 my ( $key, $value );
 my $now = time;
-my $setid = join( '.', $now, SERVER, int( rand() * 100000 ) );
+my $setid = join( '.', $now, $config->{'Server'}, int( rand() * 100000 ) );
 
 debug($setid);
 
 #my @scripts = <SDIR>;
 # TODO - script locations should not be hardcoded
 # HC
-my @scripts = </home/djacobs/diagnosticsaur/run/*>;
+my $dir = $config->{'Scripts_Directory'};
+my @scripts = <$dir*>;
 
 # TODO - decide on a consistent naming convention for databases
-my $connection =
-  MongoDB::Connection->new( host => 'dbh00.mongolab.com', port => 27007 );
-$connection->authenticate( 'smddj1', 'USER', 'PASS' );
+my $connection = MongoDB::Connection->new( 
+                           host => $config->{'Database_Host'}, 
+                           port => $config->{'Database_Port'});
+                           
+$connection->authenticate( $config->{'Database_Name'}, 
+                           $config->{'Database_User'}, 
+                           $config->{'Database_Password'} );
 
 # TODO - db & collection names should not be hard coded
 #Serious Eats Metrics Dev David Jacobs 1 / AI dev 1
 # moved to AI dev 2 1/14
-my $database   = $connection->smddj1;
-my $collection = $database->aidev2;
+#my $database   = $connection->smddj1;
+#my $collection = $database->aidev2;
+
+my $db_name = $config->{'Database_Name'};
+my $collection  = $config->{'Collection'};
+
+my $database = $connection->$db_name;
+my $collection = $database->$collection;
 
 sub debug {
     DEBUG and print "DEBUG: @_\n";
@@ -50,7 +61,7 @@ foreach $key (@scripts) {
 
     chomp($value);
 
-    debug( join( ':', $key, $value, $now, SERVER ) );
+    debug( join( ':', $key, $value, $now, $config->{'Server'} ) );
 
     # TODO make sure the result makes sense (integer, no newline) (\d+)
 
@@ -61,10 +72,10 @@ foreach $key (@scripts) {
             'operation' => $script[-1],
             'value'     => $value,
             'time'      => $now,
-            'server'    => SERVER,
+            'server'    => $config->{'Server'},
             'fullpath'  => $key,
             'setid'     => $setid,
-            'server_id' => SERVER_ID,
+            'server_id' => $config->{'Server_ID'},
         }
     );
     debug( "id, ", $id );

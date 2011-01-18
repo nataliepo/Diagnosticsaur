@@ -15,17 +15,31 @@ use constant PASS => 'xxxx';
 use JSON;
 use MongoDB;
 
+
+use lib qw( lib );
+use DiagnosticsaurUtil;
+
+my $config = DiagnosticsaurUtil->parse_config_file();
+
 # globals or reused variables
 my ( %setid,      $setid );
 my ( $ii,         $tt );
 my ( %datakey,    @datavar );
 my ( $connection, $database, $collection );
 
-$connection =
-  MongoDB::Connection->new( host => 'dbh00.mongolab.com', port => 27007 );
-$connection->authenticate( 'smddj1', USER, PASS );
-$database   = $connection->smddj1;
-$collection = $database->aidev2;
+
+$connection = MongoDB::Connection->new( 
+                           host => $config->{'Database_Host'}, 
+                           port => $config->{'Database_Port'});
+$connection->authenticate( $config->{'Database_Name'}, 
+                           $config->{'Database_User'}, 
+                           $config->{'Database_Password'} );
+
+my $db_name = $config->{'Database_Name'};
+my $coll_name  = $config->{'Collection'};
+
+my $database = $connection->$db_name;
+my $collection = $database->$coll_name;
 
 sub debug {
     DEBUG and print "DEBUG: @_\n";
@@ -63,8 +77,7 @@ foreach ( keys %setid ) {
 
 # TODO: don't hard code this location
 # HC
-my $write_file =
-  '/Users/djacobs/Dropbox/Projects/Diagnosticsaur/scratch/stats2.js';
+my $write_file = $config->{'Output_Path'};
 
 open my ($fh), '>', $write_file or die 'could not open stats file for writing';
 print $fh 'var stats = ' . encode_json( \@datavar ) . ';';
