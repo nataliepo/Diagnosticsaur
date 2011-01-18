@@ -1,0 +1,3 @@
+#!/bin/bash
+VARR=`ps aux |grep mt-comments.cgi |wc -l`
+echo $(($VARR-3))

@@ -1,0 +1,3 @@
+#!/bin/bash
+VARR=`ps aux |grep mt.cgi |wc -l`
+echo $(($VARR-3))
