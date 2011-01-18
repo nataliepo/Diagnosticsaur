@@ -8,7 +8,7 @@ use constant CONFIG_FILE => 'config.json';
 
 
 sub parse_config_file {
-   my ($foo, $filename) = @_;
+   my ($filename) = @_;
    
    $filename = CONFIG_FILE if (!$filename);
 
