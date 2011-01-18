@@ -2,19 +2,15 @@
 
 use strict;
 
-use constant SERVER     => 'AIdev';
 use constant DEBUG      => 0;
 use constant DEBUG_SAVE => 0;
 
-use constant USER => 'xxxx';
-use constant PASS => 'xxxx';
 
 # libraries
 #use Data::Dumper;
 #use File::Glob qw(:globally :nocase);
 use JSON;
 use MongoDB;
-
 
 use lib qw( lib );
 use DiagnosticsaurUtil;
