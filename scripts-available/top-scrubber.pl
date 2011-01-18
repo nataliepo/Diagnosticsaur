@@ -54,8 +54,9 @@ for (my $i = 0; $i < @lines; $i++) {
 # top - 10:36:52 up 81 days, 11 min,  1 user,  load average: 0.07, 0.03, 0.00
 #     'n min' is optional
 # double \\ req'd
-my $regexp = "^top - (.*) up ([\\d]+) days,\\s+([0-9:]+)(min)?," . 
-             "\\s+([\\d]+) users?,\\s+" . 
+my $regexp = 
+   #"^top - (.*) up ([\\d]+) days?,\\s+([0-9:]+)(min)?," . 
+   #          "\\s+([\\d]+) users?,\\s+" . 
              "load average: ([0-9.]+), ([0-9.]+), ([0-9.]+)";
 
 my $breakout;
@@ -69,13 +70,13 @@ if ($lines[0] !~ m/$regexp/) {
 }
 else {   
    
-   $breakout->{'info'}->{'timestamp'} = $1;
-   $breakout->{'info'}->{'days_up'} = $2;  
-   $breakout->{'info'}->{'unknown_timestamp'} = $3; 
-   $breakout->{'info'}->{'users'} = $5;
-   $breakout->{'info'}->{'load_1'} = $6;
-   $breakout->{'info'}->{'load_5'} = $7;
-   $breakout->{'info'}->{'load_10'} = $8;
+#   $breakout->{'info'}->{'timestamp'} = $1;
+#   $breakout->{'info'}->{'days_up'} = $2;  
+#   $breakout->{'info'}->{'unknown_timestamp'} = $3; 
+#   $breakout->{'info'}->{'users'} = $5;
+   $breakout->{'info'}->{'load_1'} = $1;
+   $breakout->{'info'}->{'load_5'} = $2;
+   $breakout->{'info'}->{'load_10'} = $3;
 }
 
 
