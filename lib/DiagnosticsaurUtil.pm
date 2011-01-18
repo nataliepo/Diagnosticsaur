@@ -8,8 +8,9 @@ use constant CONFIG_FILE => 'config.json';
 
 
 sub parse_config_file {
-
-   my $filename = CONFIG_FILE;
+   my ($filename) = @_;
+   
+   $filename = CONFIG_FILE if (!$filename);
 
    open (INFILE, $filename) or die "Couldn't open config file \"$filename\" for reading.\n";
    
