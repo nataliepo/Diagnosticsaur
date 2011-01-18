@@ -1,15 +1,32 @@
-
 <html> 
+<?php
+   $date = 0;
+   $next_day = 0;
+   $prev_day = 0;
+
+
+   if (!array_key_exists('date', $_GET)) {
+      $json_filename = 'stats-natalie.js';
+   }
+   else {
+      $json_filename = $_GET['date'] . '.js';
+
+      $date = $_GET['date'];
+      $next_day = $_GET['date'] + 1;
+      $prev_day = $_GET['date'] - 1;
+   
+   }
+?>
   <head> 
     <title>Parallel Coordinates</title> 
     <link type="text/css" rel="stylesheet" href="ex.css?3.2"/> 
     <script type="text/javascript" src="protovis-d3.2.js"></script> 
-    <script type="text/javascript" src="stats2.js"></script> 
+    <script type="text/javascript" src="<?php echo $json_filename; ?>"></script> 
     <style type="text/css"> 
  
 #fig {
   width: 880px;
-  height: 460px;
+  height: 600px;
 }
  
 #title {
@@ -26,28 +43,31 @@ large {
  
     </style> 
   </head> 
-  <body><div id="center"><div id="fig"> 
+  <body>
+     <div id="center">
+        <h4><?php echo $title; ?>: <?php echo $date;?></h4>
+        
+        <div id="fig"> 
     <script type="text/javascript+protovis"> 
  
  
 // The units and dimensions to visualize, in order.
 var units = {
-  "process-searchd-running": {name: "search", unit: " Processes"},
-  "process-httpd-running": {name: "httpd", unit: " Processes"},
-  "load-one-average": {name: "load 1", unit: " CPU%"},
-  "load-five-average": {name: "load 5", unit: " CPU%"},
-  "load-fifteen-average": {name: "load 15", unit: " CPU%"},
-  "memory-swap-free": {name: "swap-free", unit: "M"},
-  "memory-swap-total": {name: "swap-total", unit: "M"},
-  "memory-physical-free": {name: "memory-free", unit: "M"},
-  "hour": {name: "hour", unit: ""},
+<?php
+   foreach(array_keys($parameters) as $p) {
+     echo 
+        '   "' . $p . '": {name: "' . $parameters[$p]['name'] . 
+         '", unit: "' . $parameters[$p]['unit'] . '"},
+';
+   }
+?>
 }
 
 var dims = pv.keys(units);
  
 /* Sizing and scales. */
 var w = 820,
-    h = 420,
+    h = 580,
     fudge = 0.5,
     x = pv.Scale.ordinal(dims).splitFlush(0, w),
     y = pv.dict(dims, function(t) pv.Scale.linear(
@@ -171,5 +191,19 @@ handle.anchor("top").add(pv.Label)
 vis.render();
  
     </script> 
-  </div></div></body> 
+  </div></div>
+  <div style="clear:both;" />
+  <p align="right">
+     <hr />
+     <a href="?date=<?php echo $prev_day;?>">Prev Day (<?php echo $prev_day; ?>)</a><br />
+     <a href="?date=<?php echo $next_day;?>">Next Day (<?php echo $next_day; ?>)</a><br />     
+     <hr />
+     <a href="stats-all.php?date=<?php echo $date;?>">All Stats (<?php echo $date; ?>)</a><br />     
+     <a href="stats-bandwidth.php?date=<?php echo $date;?>">Bandwidth (<?php echo $date; ?>)</a><br />     
+     <a href="stats-community.php?date=<?php echo $date;?>">Community (<?php echo $date; ?>)</a><br />     
+     <a href="stats-editorial.php?date=<?php echo $date;?>">Editorial (<?php echo $date; ?>)</a><br />     
+     <a href="stats-search.php?date=<?php echo $date;?>">Search (<?php echo $date; ?>)</a><br />     
+     
+   </p>
+  </body> 
 </html>

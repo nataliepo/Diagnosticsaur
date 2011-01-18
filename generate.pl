@@ -2,15 +2,19 @@
 
 use strict;
 
+use constant SERVER     => 'AIdev';
 use constant DEBUG      => 0;
 use constant DEBUG_SAVE => 0;
 
+use constant USER => 'xxxx';
+use constant PASS => 'xxxx';
 
 # libraries
 #use Data::Dumper;
 #use File::Glob qw(:globally :nocase);
 use JSON;
 use MongoDB;
+
 
 use lib qw( lib );
 use DiagnosticsaurUtil;
@@ -73,9 +77,12 @@ foreach ( keys %setid ) {
 
 # TODO: don't hard code this location
 # HC
-my $write_file = $config->{'Output_Path'};
+my $date = `date +%Y%m%d`;
+$date =~ s/\n$//;
+my $write_file = $config->{'Output_Path'} . $date . '.js';
 
-open my ($fh), '>', $write_file or die 'could not open stats file for writing';
+open my ($fh), '>', $write_file or 
+   die 'could not open stats file \"' . $write_file . '\" for writing';
 print $fh 'var stats = ' . encode_json( \@datavar ) . ';';
 close $fh;
 
