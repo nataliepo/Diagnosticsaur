@@ -4,6 +4,9 @@ use strict;
 
 use constant DEBUG      => 0;
 use constant DEBUG_SAVE => 0;
+use JSON;
+
+use constant CONFIG_FILE => 'config.json';
 
 # libraries
 use Data::Dumper;
@@ -13,8 +16,8 @@ use MongoDB;
 use Getopt::Long;
 
 
-use lib qw( lib );
-use DiagnosticsaurUtil;
+#use lib qw( lib );
+#use DiagnosticsaurUtil;
 
 my $config_file;
 
@@ -23,7 +26,8 @@ my $result = GetOptions(
    "config=s" => \$config_file,
 );
 
-my $config = DiagnosticsaurUtil->parse_config_file($config_file);
+#my $config = DiagnosticsaurUtil->parse_config_file($config_file);
+my $config = parse_config_file($config_file);
 
 # globals or reused
 my ( $key, $value );
@@ -89,6 +93,33 @@ foreach $key (@scripts) {
     );
     debug( "id, ", $id );
 }
+
+sub parse_config_file {
+   my ($filename) = @_;
+   
+   $filename = CONFIG_FILE if (!$filename);
+
+   open (INFILE, $filename) or die "Couldn't open config file \"$filename\" for reading.\n";
+   
+   
+   my $line = "";
+   my $final_json = "";
+
+   while ($line = <INFILE>) { 
+      $final_json .= $line;
+   }
+
+   my $obj = decode_json($final_json);
+
+   foreach my $o (keys(%$obj)) {
+      # print STDERR "\t obj->{$o} = \"" . $obj->{$o} . "\"\n";
+   }
+
+   close (INFILE);
+   
+   return $obj;
+}
+
 
 __END__ 
 
