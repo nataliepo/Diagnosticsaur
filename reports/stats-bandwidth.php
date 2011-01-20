@@ -28,8 +28,8 @@
                'name' => 'load 5', 
                'unit' => 'CPU %'),               
                
-         "memory-swap-free" => array(
-               'name' => 'swap-free', 
+         "memory-swap-used" => array(
+               'name' => 'swap-used', 
                'unit' => 'M'),
                
          "memory-physical-used" => array(

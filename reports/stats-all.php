@@ -12,7 +12,7 @@
     $parameters = array(
          "process-httpd-running" =>  array(
                   'name' => 'httpd', 
-                  'unit' => 'Processes'),
+                  'unit' => 'Procs'),
                   
          "process-mt-search-cgi-running" => array(
                   'name' => 'mt-search', 
@@ -46,8 +46,8 @@
                'name' => 'load 5', 
                'unit' => 'CPU %'),               
                
-         "memory-swap-free" => array(
-               'name' => 'swap-free', 
+         "memory-swap-used" => array(
+               'name' => 'swap-used', 
                'unit' => 'M'),
                
          "memory-physical-used" => array(
