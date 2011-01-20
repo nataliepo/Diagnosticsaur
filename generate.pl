@@ -2,12 +2,8 @@
 
 use strict;
 
-use constant SERVER     => 'AIdev';
 use constant DEBUG      => 0;
 use constant DEBUG_SAVE => 0;
-
-use constant USER => 'xxxx';
-use constant PASS => 'xxxx';
 
 # libraries
 #use Data::Dumper;
@@ -18,15 +14,17 @@ use Getopt::Long;
 
 
 
-use lib qw( lib );
-use DiagnosticsaurUtil;
+use constant CONFIG_FILE => 'config.json';
+
+#use lib qw( lib );
+#use DiagnosticsaurUtil;
 my $config_file;
 
 my $result = GetOptions(
    "config=s" => \$config_file,
 );
 
-my $config = DiagnosticsaurUtil->parse_config_file($config_file);
+my $config = parse_config_file($config_file);
 
 
 # globals or reused variables
@@ -93,6 +91,34 @@ open my ($fh), '>', $write_file or
    die 'could not open stats file \"' . $write_file . '\" for writing';
 print $fh 'var stats = ' . encode_json( \@datavar ) . ';';
 close $fh;
+
+
+sub parse_config_file {
+   my ($filename) = @_;
+   
+   $filename = CONFIG_FILE if (!$filename);
+
+   open (INFILE, $filename) or die "Couldn't open config file \"$filename\" for reading.\n";
+   
+   
+   my $line = "";
+   my $final_json = "";
+
+   while ($line = <INFILE>) { 
+      $final_json .= $line;
+   }
+
+   my $obj = decode_json($final_json);
+
+   foreach my $o (keys(%$obj)) {
+      # print STDERR "\t obj->{$o} = \"" . $obj->{$o} . "\"\n";
+   }
+
+   close (INFILE);
+   
+   return $obj;
+}
+
 
 __END__ 
 
