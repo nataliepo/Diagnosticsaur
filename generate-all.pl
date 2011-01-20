@@ -52,32 +52,12 @@ sub debug {
     DEBUG_SAVE and print STDERR @_, "\n";
 }
 
-my $date = `date +%Y%m%d`;
-$date =~ s/\n$//;
-
-my $start_date_str = `date +"%a %b %d 00:00:00 EST %Y"`;
-my $end_date_str = `date +"%a %b %d 23:59:59 EST %Y"`;
-
-$start_date_str =~ s/\n$//;
-$end_date_str =~ s/\n$//;
-
-my $start_date = `date +"%s" -d "$start_date_str"`;
-my $end_date = `date +"%s" -d "$end_date_str"`;
-
-$start_date =~ s/\n$//;
-$end_date =~ s/\n$//;
-
-# make these values integers, not strings
-$start_date += 0;
-$end_date += 0;
-
 
 # more info is available here: http://search.cpan.org/dist/MongoDB/lib/MongoDB/Collection.pm
 # or here http://www.mongodb.org/display/DOCS/Advanced+Queries
 # TODO - it appears that we can't .group with MongoDB.pm. That's OK.
-my $data = $collection->find( 
-      { 'time' =>  {'$lt' => $end_date, '$gt' => $start_date} }, 
-      { 'setid' => 1 } );
+my $data = $collection->find( { }, { 'setid' => 1 } );
+
 
 while ( my $ii = $data->next ) {
 
@@ -96,6 +76,9 @@ foreach ( keys %setid ) {
         $datakey{$setid}{'hour'} =
           ( localtime( $ii->{'time'} ) )[2] +
           ( ( ( localtime( $ii->{'time'} ) )[1] ) / 60 );   
+            
+        $datakey{$setid}{'day'} = ( localtime( $ii->{'time'} ) )[3];
+        $datakey{$setid}{'month'} = ( localtime( $ii->{'time'} ) )[4];
 
         $datakey{$setid}{ $ii->{'operation'} } = $ii->{'value'};
     }
@@ -104,8 +87,8 @@ foreach ( keys %setid ) {
     push( @datavar, $datakey{$setid} );
 }
 
-# write the output file according to today's date.
-my $write_file = $config->{'Output_Path'} . $date . '.js';
+# this is reporting on ALL the data!
+my $write_file = $config->{'Output_Path'} . 'all' . '.js';
 
 open my ($fh), '>', $write_file or 
    die 'could not open stats file \"' . $write_file . '\" for writing';
