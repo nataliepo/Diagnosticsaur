@@ -12,39 +12,39 @@
     $parameters = array(
          "process-httpd-running" =>  array(
                   'name' => 'httpd', 
-                  'unit' => 'Procs'),
+                  'unit' => ' Ps'),
                   
          "process-mt-search-cgi-running" => array(
-                  'name' => 'mt-search', 
-                  'unit' => 'Processes'),
+                  'name' => 'search', 
+                  'unit' => ' Ps'),
                   
          "process-mt-comments-cgi-running" => array(
-                  'name' => 'mt-comments', 
-                  'unit' => 'Processes'),
+                  'name' => 'comments', 
+                  'unit' => ' Ps'),
 
          "process-mt-cp-cgi-running" => array(
-                  'name' => 'mt-cp', 
-                  'unit' => 'Processes'),
+                  'name' => 'cp', 
+                  'unit' => ' Ps'),
 
          "process-mt-cgi-running" => array(
                   'name' => 'mt', 
-                  'unit' => 'Processes'),
+                  'unit' => ' Ps'),
          
          "iostat-nfs-read" => array(
                'name' => 'nfs-read', 
-               'unit' => 'rkB_nor/sec'),
+               'unit' => ' rkB_nor/sec'),
 
          "iostat-nfs-writes" => array(
                'name' => 'nfs-write', 
-               'unit' => 'wkB_nor/s'),                        
+               'unit' => ' wkB_nor/s'),                        
   
          "load-one-average" => array(
                'name' => 'load 1', 
-               'unit' => 'CPU %'),
+               'unit' => ' CPU%'),
              
          "load-five-average" => array(
                'name' => 'load 5', 
-               'unit' => 'CPU %'),               
+               'unit' => ' CPU%'),               
                
          "memory-swap-used" => array(
                'name' => 'swap-used', 
@@ -56,7 +56,7 @@
 
          "server_id" => array(
                'name' => 'server_id', 
-               'unit' => 'app-number'),                                
+               'unit' => 'app'),                                
                   
          "hour"   => array(
                   'name' => 'hour',
