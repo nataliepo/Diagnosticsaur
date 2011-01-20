@@ -204,7 +204,7 @@ vis.render();
      <a href="stats-editorial.php?date=<?php echo $date;?>">Editorial (<?php echo $date; ?>)</a><br />     
      <a href="stats-search.php?date=<?php echo $date;?>">Search (<?php echo $date; ?>)</a><br />     
      <hr />
-     <a href="stats-all.php?date=all">All Stats, All Time</a><br />
+     <a href="stats-alltime.php?date=all">All Stats, All Time</a><br />
    </p>
   </body> 
 </html>
