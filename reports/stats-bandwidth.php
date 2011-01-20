@@ -14,11 +14,11 @@
 
          "iostat-nfs-read" => array(
                'name' => 'nfs-read', 
-               'unit' => 'rkB_nor/sec'),
+               'unit' => 'kb/s'),
 
          "iostat-nfs-writes" => array(
                'name' => 'nfs-write', 
-               'unit' => 'wkB_nor/s'),                        
+               'unit' => 'kb/s'),                        
   
          "load-one-average" => array(
                'name' => 'load 1', 
