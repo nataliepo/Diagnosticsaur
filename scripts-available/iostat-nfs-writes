@@ -11,4 +11,7 @@
 #Device:                   rkB_nor/s    wkB_nor/s    rkB_dir/s    wkB_dir/s    rkB_svr/s    wkB_svr/s
 #10.64.71.250:/mnt/drbd0      4098.48         1.76         0.00         0.00        44.13         1.76
 
-iostat -nk | awk '/mnt/ {print $3}'
+#iostat -nk | awk '/mnt/ {print $3}'
+
+perl /mnt/nfs/shared/diagnosticsaur/scripts-not-running/nfs-throughput.pl --task=w
+
