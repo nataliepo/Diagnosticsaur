@@ -53,6 +53,10 @@
          "memory-physical-used" => array(
                'name' => 'memory-used', 
                'unit' => 'M'),               
+
+         "server_id" => array(
+               'name' => 'server_id', 
+               'unit' => 'app-number'),                                
                   
          "hour"   => array(
                   'name' => 'hour',

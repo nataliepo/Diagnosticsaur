@@ -13,7 +13,7 @@
  
          "process-mt-search-cgi-running" => array(
                   'name' => 'mt-search', 
-                  'unit' => 'Processes'),
+                  'unit' => 'Processes'),               
                   
          "load-one-average" => array(
                'name' => 'load 1', 
@@ -30,6 +30,10 @@
          "memory-physical-used" => array(
                'name' => 'memory-used', 
                'unit' => 'M'),               
+
+         "server_id" => array(
+               'name' => 'server_id', 
+               'unit' => 'app-number'),
                   
          "hour"   => array(
                   'name' => 'hour',

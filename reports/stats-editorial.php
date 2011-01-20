@@ -12,8 +12,8 @@
     $parameters = array(
          "process-mt-cgi-running" => array(
                   'name' => 'mt', 
-                  'unit' => 'Processes'),                  
-  
+                  'unit' => 'Processes'),    
+                    
          "load-one-average" => array(
                'name' => 'load 1', 
                'unit' => 'CPU %'),
@@ -29,6 +29,10 @@
          "memory-physical-used" => array(
                'name' => 'memory-used', 
                'unit' => 'M'),               
+
+         "server_id" => array(
+               'name' => 'server_id', 
+               'unit' => 'app-number'),                                
                   
          "hour"   => array(
                   'name' => 'hour',

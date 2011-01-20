@@ -11,7 +11,7 @@
          "process-httpd-running" =>  array(
                   'name' => 'httpd', 
                   'unit' => 'Processes'),
-         
+
          "iostat-nfs-read" => array(
                'name' => 'nfs-read', 
                'unit' => 'rkB_nor/sec'),
@@ -35,6 +35,10 @@
          "memory-physical-used" => array(
                'name' => 'memory-used', 
                'unit' => 'M'),               
+
+         "server_id" => array(
+               'name' => 'server_id', 
+               'unit' => 'app-number'),                                
                   
          "hour"   => array(
                   'name' => 'hour',
