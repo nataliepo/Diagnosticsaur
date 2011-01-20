@@ -12,39 +12,39 @@
     $parameters = array(
          "process-httpd-running" =>  array(
                   'name' => 'httpd', 
-                  'unit' => ' Ps'),
+                  'unit' => 'Ps'),
                   
          "process-mt-search-cgi-running" => array(
                   'name' => 'search', 
-                  'unit' => ' Ps'),
+                  'unit' => 'Ps'),
                   
          "process-mt-comments-cgi-running" => array(
                   'name' => 'comments', 
-                  'unit' => ' Ps'),
+                  'unit' => 'Ps'),
 
          "process-mt-cp-cgi-running" => array(
                   'name' => 'cp', 
-                  'unit' => ' Ps'),
+                  'unit' => 'Ps'),
 
          "process-mt-cgi-running" => array(
                   'name' => 'mt', 
-                  'unit' => ' Ps'),
+                  'unit' => 'Ps'),
          
          "iostat-nfs-read" => array(
                'name' => 'nfs-read', 
-               'unit' => ' rkB_nor/sec'),
+               'unit' => 'rkB_nor/sec'),
 
          "iostat-nfs-writes" => array(
                'name' => 'nfs-write', 
-               'unit' => ' wkB_nor/s'),                        
+               'unit' => 'wkB_nor/s'),                        
   
          "load-one-average" => array(
                'name' => 'load 1', 
-               'unit' => ' CPU%'),
+               'unit' => 'CPU%'),
              
          "load-five-average" => array(
                'name' => 'load 5', 
-               'unit' => ' CPU%'),               
+               'unit' => 'CPU%'),               
                
          "memory-swap-used" => array(
                'name' => 'swap-used', 

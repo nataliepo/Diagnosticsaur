@@ -57,7 +57,7 @@ var units = {
    foreach(array_keys($parameters) as $p) {
      echo 
         '   "' . $p . '": {name: "' . $parameters[$p]['name'] . 
-         '", unit: "' . $parameters[$p]['unit'] . '"},
+         '", unit: " ' . $parameters[$p]['unit'] . ' "},
 ';
    }
 ?>

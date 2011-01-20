@@ -12,7 +12,7 @@
     $parameters = array(
          "process-mt-cgi-running" => array(
                   'name' => 'mt', 
-                  'unit' => 'Processes'),    
+                  'unit' => 'Procs'),    
                     
          "load-one-average" => array(
                'name' => 'load 1', 

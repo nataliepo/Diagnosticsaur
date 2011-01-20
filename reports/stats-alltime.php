@@ -1,7 +1,7 @@
 <?php
     
     
-    $title = 'Community Report';
+    $title = 'Multi-Report';
     $json_filename = 'stats-natalie.js';
     
     
@@ -10,6 +10,13 @@
          the name + unit label the column in the graph.
      */
     $parameters = array(
+         "process-httpd-running" =>  array(
+                  'name' => 'httpd', 
+                  'unit' => 'Procs'),
+                  
+         "process-mt-search-cgi-running" => array(
+                  'name' => 'mt-search', 
+                  'unit' => 'Procs'),
                   
          "process-mt-comments-cgi-running" => array(
                   'name' => 'mt-comments', 
@@ -17,8 +24,20 @@
 
          "process-mt-cp-cgi-running" => array(
                   'name' => 'mt-cp', 
-                  'unit' => 'Procs'),               
+                  'unit' => 'Procs'),
 
+         "process-mt-cgi-running" => array(
+                  'name' => 'mt', 
+                  'unit' => 'Procs'),
+         
+         "iostat-nfs-read" => array(
+               'name' => 'nfs-read', 
+               'unit' => 'rkB_nor/sec'),
+
+         "iostat-nfs-writes" => array(
+               'name' => 'nfs-write', 
+               'unit' => 'wkB_nor/s'),                        
+  
          "load-one-average" => array(
                'name' => 'load 1', 
                'unit' => 'CPU %'),
@@ -41,7 +60,15 @@
                   
          "hour"   => array(
                   'name' => 'hour',
-                  'unit' => "")
+                  'unit' => ""),
+                  
+         "day"   => array(
+                  'name' => 'day',
+                  'unit' => ""),
+                        
+         "month"   => array(
+                  'name' => 'month',
+                  'unit' => '')                  
          );
     
     

@@ -10,7 +10,7 @@
     $parameters = array(
          "process-httpd-running" =>  array(
                   'name' => 'httpd', 
-                  'unit' => 'Processes'),
+                  'unit' => 'Procs'),
 
          "iostat-nfs-read" => array(
                'name' => 'nfs-read', 

@@ -13,7 +13,7 @@
  
          "process-mt-search-cgi-running" => array(
                   'name' => 'mt-search', 
-                  'unit' => 'Processes'),               
+                  'unit' => 'Procs'),               
                   
          "load-one-average" => array(
                'name' => 'load 1', 
